@@ -17,7 +17,10 @@ export default function Recommendations({ userId }: { userId: number }) {
     useEffect(() => {
         const fetchRecs = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/recommendations/user/${userId}`);
+                const token = localStorage.getItem('token');
+                const res = await fetch(`http://localhost:5000/api/recommendations/user`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 if (res.ok) {
                     const data = await res.json();
                     setBooks(Array.isArray(data) ? data : []);

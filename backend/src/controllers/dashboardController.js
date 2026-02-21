@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 exports.getStats = async (req, res) => {
-    const userId = req.user.id; // user ID from middleware (todo)
+    const userId = req.user.id;
     try {
         const activeLoans = await pool.query(
             'SELECT COUNT(*) as count FROM transactions WHERE user_id = $1 AND return_date IS NULL',

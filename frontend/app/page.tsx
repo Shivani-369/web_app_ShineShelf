@@ -19,12 +19,13 @@ export default function Home() {
         if (!currentUser?.id) return;
 
         try {
+            const token = localStorage.getItem('token');
             const [statsRes, loansRes] = await Promise.all([
                 fetch(`http://localhost:5000/api/dashboard/stats`, {
-                    headers: { 'Authorization': `Bearer ${currentUser.token}` }
+                    headers: { 'Authorization': `Bearer ${token}` }
                 }),
                 fetch(`http://localhost:5000/api/dashboard/loans`, {
-                    headers: { 'Authorization': `Bearer ${currentUser.token}` }
+                    headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
 

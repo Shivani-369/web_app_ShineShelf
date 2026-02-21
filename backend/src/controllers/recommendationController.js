@@ -2,7 +2,7 @@ const pool = require('../config/db');
 
 // Get personalized recommendations for a user
 exports.getPersonalizedRecommendations = async (req, res) => {
-    const { userId } = req.params;
+    const userId = req.user.id;
     try {
         // Query logic:
         // 1. Get genres the user has borrowed before

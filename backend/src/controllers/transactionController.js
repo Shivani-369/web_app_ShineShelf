@@ -2,7 +2,8 @@ const pool = require('../config/db');
 
 // Borrow a book
 exports.borrowBook = async (req, res) => {
-    const { userId, bookId } = req.body;
+    const userId = req.user.id;
+    const { bookId } = req.body;
 
     try {
         // Start transaction - Use IMMEDIATE for exclusive lock in SQLite
@@ -55,8 +56,8 @@ exports.returnBook = async (req, res) => {
     try {
         // Get transaction and inventory details
         const txResult = await pool.query(
-            "SELECT inventory_id, due_date FROM transactions WHERE id = $1 AND return_date IS NULL",
-            [transactionId]
+            "SELECT inventory_id, due_date FROM transactions WHERE id = $1 AND user_id = $2 AND return_date IS NULL",
+            [transactionId, req.user.id]
         );
 
         if (txResult.rows.length === 0) {
