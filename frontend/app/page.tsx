@@ -48,8 +48,10 @@ export default function Home() {
     };
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-        if (storedUser.id) {
+
+        if (token && storedUser.id) {
             setUser(storedUser);
             fetchData(storedUser);
             setVerifying(false);
@@ -62,8 +64,10 @@ export default function Home() {
 
     const handleReturn = async (transactionId: number) => {
         try {
+            const token = localStorage.getItem('token');
             const res = await fetch(`http://localhost:5000/api/transactions/return/${transactionId}`, {
                 method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
                 fetchData(user); // Refresh data
