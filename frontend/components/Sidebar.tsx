@@ -15,12 +15,7 @@ export default function Sidebar() {
                 <Link href="/books" className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
                     <span className="font-medium">Books Catalogue</span>
                 </Link>
-                <Link href="/clubs" className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                    <span className="font-medium">Book Clubs</span>
-                </Link>
-                <Link href="/profile" className="flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                    <span className="font-medium">My Profile</span>
-                </Link>
+
             </nav>
 
             <div className="p-4 border-t border-gray-100">
