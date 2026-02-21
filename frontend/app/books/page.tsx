@@ -138,7 +138,7 @@ export default function BooksPage() {
               {!book.available && (
                 <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                   <span className="text-white font-bold px-3 py-1 bg-red-600 rounded-full text-xs">
-                    Checked Out
+                    Out of Stock
                   </span>
                 </div>
               )}
