@@ -11,12 +11,14 @@ export default function SignupPage() {
     const [error, setError] = useState('');
     const router = useRouter();
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password }),

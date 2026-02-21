@@ -21,10 +21,11 @@ export default function BooksPage() {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
   const fetchBooks = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/books');
+      const res = await fetch(`${API_URL}/api/books`);
       if (res.ok) {
         const data = await res.json();
         setBooks(data);
@@ -54,7 +55,7 @@ export default function BooksPage() {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/transactions/borrow', {
+      const res = await fetch(`${API_URL}/api/transactions/borrow`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

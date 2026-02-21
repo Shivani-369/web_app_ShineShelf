@@ -7,6 +7,8 @@ import Recommendations from '@/components/Recommendations';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 export default function Home() {
     const router = useRouter();
     const [user, setUser] = useState<any>(null);
@@ -21,10 +23,10 @@ export default function Home() {
         try {
             const token = localStorage.getItem('token');
             const [statsRes, loansRes] = await Promise.all([
-                fetch(`http://localhost:5000/api/dashboard/stats`, {
+                fetch(`${API_URL}/api/dashboard/stats`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch(`http://localhost:5000/api/dashboard/loans`, {
+                fetch(`${API_URL}/api/dashboard/loans`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
@@ -65,7 +67,7 @@ export default function Home() {
     const handleReturn = async (transactionId: number) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:5000/api/transactions/return/${transactionId}`, {
+            const res = await fetch(`${API_URL}/api/transactions/return/${transactionId}`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
