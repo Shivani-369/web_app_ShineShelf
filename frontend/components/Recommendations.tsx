@@ -13,7 +13,7 @@ interface Book {
 export default function Recommendations({ userId }: { userId: number }) {
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState(true);
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://web-app-shineshelf.onrender.com';
 
     useEffect(() => {
         const fetchRecs = async () => {
